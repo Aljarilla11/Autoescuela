@@ -1,19 +1,22 @@
 <?php
 
-require_once "sesion.php";
-require_once "usuario.php";
+require_once "../helpers/sesion.php";
+//require_once "usuario.php";
+require_once "../repository/Db.php";
 
+$conexion = Db::conectar();
 
-function login($nombre,$password,$usuarios)
+function login($nombre,$password)
 {
- 
+    global $conexion;
+
     if (isset($_POST['enviar'])) 
     {
                   
-        if(existeUsuario($nombre,$password,$usuarios))
+        if(existeUsuario($nombre,$password))
         {
-            guardarSesion('usuario',getUsuario());
-            header('Location: http://login.com/csv.php?nombre=' . urlencode($nombre));
+            guardarSesion('usuario',$_SESSION['usuario'] = $nombre);
+            header('Location: http://autoescuela.com/forms/ejemplo.php');
             exit;
         }
     } 
@@ -23,38 +26,27 @@ function login($nombre,$password,$usuarios)
     }   
 }
 
-function existeUsuario($nombre,$password,$usuarios)
+function existeUsuario($nombre,$password)
 {
-    $lines = file($usuarios);
+    global $conexion;
 
-    if ($lines != false) 
+    $sql = "SELECT * FROM usuario WHERE nombre = '$nombre' AND password = '$password'";
+    $result = $conexion->query($sql);
+
+    if ($result->rowCount() > 0) 
     {
-        foreach ($lines as $line) 
-        {
-            // Dividir cada línea en nombre y contraseña
-            list($nombreEnviado, $contrasenaEnviada) = explode(',', trim($line));
-
-            // Comprobar si las credenciales coinciden
-            if ($nombre == $nombreEnviado && $password == $contrasenaEnviada) 
-            {
-               return true; // Las credenciales coinciden, el usuario está autenticado
-            }
-        }
-        // Si el bucle llega hasta aquí, significa que no se encontraron coincidencias
-        echo "Credenciales incorrectas";
+        return true;
     } 
     else 
     {
-        echo "No se pudo acceder al archivo de usuarios.";
+        return false;
     }
-    
-    return false; // Si no se encontraron coincidencias o hubo un error, regresa false
 }
 
-function getUsuario()
+/*function getUsuario()
 {
-    return new Usuario($nombre,$password,'user');
-}
+    return new Usuario($nombre,$password,);
+}*/
 
 function estaLogeado()
 {
@@ -75,39 +67,20 @@ function estaLogeado()
 function logout()
 {
      cerrarSesion();
-     header('Location: http://login.com/login.php');
+     header('Location: http://autoescuela.com/forms/Login.php');
      exit;
 }
 
-function register($nombre,$password,$usuarios)
+function register($nombre,$password)
 {
-    if (!empty($nombre) && !empty($password)) 
+    global $conexion;
+
+    if (isset($_POST['enviar'])) 
     {
-        $registro = "$nombre,$password\n";
-
-        $usuarios = 'usuarios.csv';
-        $archivo = fopen($usuarios, 'a');
-
-        fwrite($archivo, $registro);
-        fclose($archivo);
-
-        echo "Registro exitoso. El usuario $nombre ha sido registrado.";
-        header('Location: http://login.com/login.php');
-        exit;
-    } 
-    else 
-    {
-        echo "Por favor, ingrese un nombre de usuario y una contraseña válidos.";
+        $query = "INSERT INTO usuario (nombre, password) VALUES ('$nombre', '$password')";
+        $conexion->exec($query);
+        header('Location: http://autoescuela.com/forms/Login.php');
     }
-}
-
-function descargarPDF($nombrePDF,$pdf_subido)
-{
-    // Establecer encabezado para abrir el PDF en una nueva pestaña
-    header('Content-Type: application/pdf');
-    header('Content-Disposition: inline; filename="' . $nombrePDF . '"');
-    readfile($pdf_subido);
-    exit;
 }
 
     

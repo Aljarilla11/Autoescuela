@@ -1,6 +1,7 @@
 <?php
-require_once "funcionesLogin.php";
-require_once "sesion.php";
+
+require_once "../helpers/funcionesLogin.php";
+require_once "../helpers/sesion.php";
 
 iniciaSesion();
 
@@ -8,8 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
     $nombre = $_POST['nombre'];
     $password = $_POST['password'];
-    $usuarios = 'usuarios.csv';
-    login($nombre,$password,$usuarios);  
+    login($nombre,$password);  
 }
 
 ?>
@@ -29,5 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         
         <input type="submit" name="enviar" value="Iniciar Sesión">
     </form>
+    <p>¿No tienes una cuenta? <a href="http://autoescuela.com/forms/Register.php">Regístrate</a></p>
 </body>
 </html>
+

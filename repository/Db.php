@@ -2,16 +2,16 @@
 
 class Db
 {
-    private $conexion = null;
+    private static $conexion = null;
 
-    static function conetar()
+    static function conectar()
     {
-        if ($conexion == null)
+        if (self::$conexion == null)
         {
-            $conexion = new PDO('mysql:host=localhost;dbname=autoescuela', 'root','');
+            self::$conexion = new PDO('mysql:host=localhost;dbname=autoescuela', 'root', '');
         }
         
-        return $conexion;
+        return self::$conexion;
     }
 
 }
