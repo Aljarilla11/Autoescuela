@@ -13,11 +13,32 @@ function login($nombre,$password)
     if (isset($_POST['enviar'])) 
     {
                   
-        if(existeUsuario($nombre,$password))
+        if(existeUsuario($nombre, $password)) 
         {
-            guardarSesion('usuario',$_SESSION['usuario'] = $nombre);
-            header('Location: http://autoescuela.com/forms/ejemplo.php');
-            exit;
+            $role = obtenerRoleUsuario($nombre, $password);
+
+            if ($role === 'admin') 
+            {
+                guardarSesion('usuario', $_SESSION['usuario'] = $nombre);
+                header('Location: http://autoescuela.com/forms/Admin.php');
+                exit;
+            } 
+            elseif ($role === 'alumno') 
+            {
+                guardarSesion('usuario', $_SESSION['usuario'] = $nombre);
+                header('Location: http://autoescuela.com/forms/Alumno.php');
+                exit;
+            } 
+            elseif ($role === 'profesor') 
+            {
+                guardarSesion('usuario', $_SESSION['usuario'] = $nombre);
+                header('Location: http://autoescuela.com/forms/Profesor.php');
+                exit;
+            } 
+            else 
+            {
+                echo "No tienes un rol para esta aplicacion";
+            }
         }
     } 
     else 
@@ -26,14 +47,18 @@ function login($nombre,$password)
     }   
 }
 
-function existeUsuario($nombre,$password)
+function existeUsuario($nombre, $password)
 {
     global $conexion;
 
-    $sql = "SELECT * FROM usuario WHERE nombre = '$nombre' AND password = '$password'";
-    $result = $conexion->query($sql);
+    // Utilizar sentencias preparadas para prevenir ataques de inyección de SQL
+    $sql = "SELECT * FROM usuario WHERE nombre = :nombre AND password = :password AND role <> ''";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bindParam(':nombre', $nombre);
+    $stmt->bindParam(':password', $password);
+    $stmt->execute();
 
-    if ($result->rowCount() > 0) 
+    if ($stmt->rowCount() > 0) 
     {
         return true;
     } 
@@ -42,6 +67,29 @@ function existeUsuario($nombre,$password)
         return false;
     }
 }
+
+function obtenerRoleUsuario($nombre, $password)
+{
+    global $conexion;
+
+    $sql = "SELECT role FROM usuario WHERE nombre = :nombre AND password = :password";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bindParam(':nombre', $nombre);
+    $stmt->bindParam(':password', $password);
+    $stmt->execute();
+
+    if ($stmt->rowCount() > 0) 
+    {
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row['role'];
+    } 
+    else 
+    {
+        return null;
+    }
+}
+
+
 
 /*function getUsuario()
 {

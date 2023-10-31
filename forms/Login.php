@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 </head>
 <body>
     <h1>Iniciar Sesión</h1>
-    <form action="login.php" method="POST">
+    <form action="Login.php" method="POST">
         <label for="nombre_usuario">Nombre de Usuario:</label>
         <input type="text" id="nombre" name="nombre" required><br><br>
         
