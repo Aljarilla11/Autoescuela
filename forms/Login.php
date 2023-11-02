@@ -3,14 +3,23 @@
 require_once "../helpers/FuncionesLogin.php";
 require_once "../helpers/Sesion.php";
 
-Sesion::iniciaSesion();
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') 
+class Login
 {
-    $nombre = $_POST['nombre'];
-    $password = $_POST['password'];
-    FuncionesLogin::login($nombre,$password);  
+    public static function loginUser()
+    {
+        Sesion::iniciaSesion();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') 
+        {
+            $nombre = $_POST['nombre'];
+            $password = $_POST['password'];
+            FuncionesLogin::login($nombre, $password);  
+        }
+    }
 }
+
+// Manejar el inicio de sesión
+Login::loginUser();
 
 ?>
 <!DOCTYPE html>
@@ -32,4 +41,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     <p>¿No tienes una cuenta? <a href="http://autoescuela.com/forms/Register.php">Regístrate</a></p>
 </body>
 </html>
-

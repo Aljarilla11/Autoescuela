@@ -1,16 +1,25 @@
 <?php
+
 require_once "../helpers/FuncionesLogin.php";
 require_once "../helpers/Sesion.php";
 
-
-Sesion::iniciaSesion();
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') 
+class Register
 {
-    $nombre = $_POST['nombre'];
-    $password = $_POST['password'];
-    FuncionesLogin::register($nombre,$password);
+    public static function registerUser()
+    {
+        Sesion::iniciaSesion();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') 
+        {
+            $nombre = $_POST['nombre'];
+            $password = $_POST['password'];
+            FuncionesLogin::register($nombre, $password);
+        }
+    }
 }
+
+// Llamar al método para registrar usuarios
+Register::registerUser();
 
 ?>
 
