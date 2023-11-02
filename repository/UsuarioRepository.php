@@ -16,7 +16,8 @@ class UsuarioRepository
         $sql = "SELECT * FROM usuario WHERE role = ''";
         $result = $this->conexion->query($sql);
         $usuarios = [];
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) 
+        {
             $usuarios[] = $row;
         }
         return $usuarios;

@@ -1,18 +1,21 @@
 <?php
 
-function iniciaSesion()
+class Sesion
 {
-    session_start();
-} 
+    public static function iniciaSesion()
+    {
+        session_start();
+    } 
 
-function cerrarSesion()
-{
-    session_destroy();
-}
+    public static function cerrarSesion()
+    {
+        session_destroy();
+    }
 
-function guardarSesion($clave, $valor)
-{
-    $_SESSION[$clave] = $valor;
+    public static function guardarSesion($clave, $valor)
+    {
+        $_SESSION[$clave] = $valor;
+    }
 }
 
 ?>

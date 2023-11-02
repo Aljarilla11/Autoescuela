@@ -1,15 +1,15 @@
 <?php
 
-require_once "../helpers/funcionesLogin.php";
-require_once "../helpers/sesion.php";
+require_once "../helpers/FuncionesLogin.php";
+require_once "../helpers/Sesion.php";
 
-iniciaSesion();
+Sesion::iniciaSesion();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') 
 {
     $nombre = $_POST['nombre'];
     $password = $_POST['password'];
-    login($nombre,$password);  
+    FuncionesLogin::login($nombre,$password);  
 }
 
 ?>

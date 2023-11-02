@@ -1,135 +1,134 @@
 <?php
 
-require_once "../helpers/sesion.php";
-//require_once "usuario.php";
+require_once "../helpers/Sesion.php";
 require_once "../repository/Db.php";
 
-$conexion = Db::conectar();
-
-function login($nombre,$password)
+class FuncionesLogin
 {
-    global $conexion;
+    private static $conexion;
 
-    if (isset($_POST['enviar'])) 
+    public static function iniciarConexion()
     {
-                  
-        if(existeUsuario($nombre, $password)) 
+        self::$conexion = Db::conectar();
+    }
+
+    public static function login($nombre, $password)
+    {
+        Sesion::iniciaSesion();
+
+        if (isset($_POST['enviar'])) 
         {
-            $role = obtenerRoleUsuario($nombre, $password);
+                      
+            if(self::existeUsuario($nombre, $password)) 
+            {
+                $role = self::obtenerRoleUsuario($nombre, $password);
 
-            if ($role === 'admin') 
-            {
-                guardarSesion('usuario', $_SESSION['usuario'] = $nombre);
-                header('Location: http://autoescuela.com/forms/Admin.php');
-                exit;
-            } 
-            elseif ($role === 'alumno') 
-            {
-                guardarSesion('usuario', $_SESSION['usuario'] = $nombre);
-                header('Location: http://autoescuela.com/forms/Alumno.php');
-                exit;
-            } 
-            elseif ($role === 'profesor') 
-            {
-                guardarSesion('usuario', $_SESSION['usuario'] = $nombre);
-                header('Location: http://autoescuela.com/forms/Profesor.php');
-                exit;
-            } 
-            else 
-            {
-                echo "No tienes un rol para esta aplicacion";
+                if ($role === 'admin') 
+                {
+                    Sesion::guardarSesion('usuario', $_SESSION['usuario'] = $nombre);
+                    header('Location: http://autoescuela.com/forms/Admin.php');
+                    exit;
+                } 
+                elseif ($role === 'alumno') 
+                {
+                    Sesion::guardarSesion('usuario', $_SESSION['usuario'] = $nombre);
+                    header('Location: http://autoescuela.com/forms/Alumno.php');
+                    exit;
+                } 
+                elseif ($role === 'profesor') 
+                {
+                    Sesion::guardarSesion('usuario', $_SESSION['usuario'] = $nombre);
+                    header('Location: http://autoescuela.com/forms/Profesor.php');
+                    exit;
+                } 
+                else 
+                {
+                    echo "No tienes un rol para esta aplicacion";
+                }
             }
+        } 
+        else 
+        {
+            echo "No se encuentra registrado";
+        }   
+    }
+
+    public static function existeUsuario($nombre, $password)
+    {
+        Sesion::iniciaSesion();
+        self::iniciarConexion();
+
+        // Utilizar sentencias preparadas para prevenir ataques de inyección de SQL
+        $sql = "SELECT * FROM usuario WHERE nombre = :nombre AND password = :password AND role <> ''";
+        $stmt = self::$conexion->prepare($sql);
+        $stmt->bindParam(':nombre', $nombre);
+        $stmt->bindParam(':password', $password);
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) 
+        {
+            return true;
+        } 
+        else 
+        {
+            return false;
         }
-    } 
-    else 
-    {
-        echo "No se encuntra registrado";
-    }   
-}
+    }
 
-function existeUsuario($nombre, $password)
-{
-    global $conexion;
-
-    // Utilizar sentencias preparadas para prevenir ataques de inyección de SQL
-    $sql = "SELECT * FROM usuario WHERE nombre = :nombre AND password = :password AND role <> ''";
-    $stmt = $conexion->prepare($sql);
-    $stmt->bindParam(':nombre', $nombre);
-    $stmt->bindParam(':password', $password);
-    $stmt->execute();
-
-    if ($stmt->rowCount() > 0) 
+    public static function obtenerRoleUsuario($nombre, $password)
     {
-        return true;
-    } 
-    else 
+        Sesion::iniciaSesion();
+        self::iniciarConexion();
+
+        $sql = "SELECT role FROM usuario WHERE nombre = :nombre AND password = :password";
+        $stmt = self::$conexion->prepare($sql);
+        $stmt->bindParam(':nombre', $nombre);
+        $stmt->bindParam(':password', $password);
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) 
+        {
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $row['role'];
+        } 
+        else 
+        {
+            return null;
+        }
+    }
+
+    public static function estaLogeado()
     {
-        return false;
+        if (isset($_SESSION['usuario'])) 
+        {
+            return true; // El usuario está autenticado
+        } 
+        else 
+        {
+            echo "Credenciales incorrectas";
+            return false; // El usuario no está autenticado
+        }
+    }
+
+    public static function logout()
+    {
+         Sesion::cerrarSesion();
+         header('Location: http://autoescuela.com/forms/Login.php');
+         exit;
+    }
+
+    public static function register($nombre, $password)
+    {
+        Sesion::iniciaSesion();
+        self::iniciarConexion();
+
+        if (isset($_POST['enviar'])) 
+        {
+            $query = "INSERT INTO usuario (nombre, password) VALUES ('$nombre', '$password')";
+            self::$conexion->exec($query);
+            header('Location: http://autoescuela.com/forms/Login.php');
+        }
     }
 }
 
-function obtenerRoleUsuario($nombre, $password)
-{
-    global $conexion;
-
-    $sql = "SELECT role FROM usuario WHERE nombre = :nombre AND password = :password";
-    $stmt = $conexion->prepare($sql);
-    $stmt->bindParam(':nombre', $nombre);
-    $stmt->bindParam(':password', $password);
-    $stmt->execute();
-
-    if ($stmt->rowCount() > 0) 
-    {
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $row['role'];
-    } 
-    else 
-    {
-        return null;
-    }
-}
-
-
-
-/*function getUsuario()
-{
-    return new Usuario($nombre,$password,);
-}*/
-
-function estaLogeado()
-{
-    if (isset($_SESSION['usuario'])) 
-    {
-        return true; // El usuario está autenticado
-    } 
-    else 
-    {
-        echo "Credenciales incorrectas";
-        return false; // El usuario no está autenticado
-    }
-}
-
-
-
-
-function logout()
-{
-     cerrarSesion();
-     header('Location: http://autoescuela.com/forms/Login.php');
-     exit;
-}
-
-function register($nombre,$password)
-{
-    global $conexion;
-
-    if (isset($_POST['enviar'])) 
-    {
-        $query = "INSERT INTO usuario (nombre, password) VALUES ('$nombre', '$password')";
-        $conexion->exec($query);
-        header('Location: http://autoescuela.com/forms/Login.php');
-    }
-}
-
-    
 ?>
