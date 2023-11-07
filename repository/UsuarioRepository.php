@@ -39,6 +39,20 @@ class UsuarioRepository
         $stmt->bindParam(':usuario_id', $usuarioId);
         $stmt->execute();
     }
+
+    public function obtenerTodosLosUsuarios()
+    {
+        $sql = "SELECT * FROM usuario";
+        $result = $this->conexion->query($sql);
+        $usuarios = [];
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) 
+        {
+            $usuarios[] = $row;
+        }
+        return $usuarios;
+    }
+
 }
+
 
 ?>

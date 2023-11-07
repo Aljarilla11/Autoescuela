@@ -11,12 +11,12 @@ class FuncionesAdmin
         $usuarioRepo = new UsuarioRepository($conexion);
 
         // Obtener usuarios con role vacío
-        $usuariosConRoleVacio = $usuarioRepo->obtenerUsuariosConRoleVacio();
+        $usuarios = $usuarioRepo->obtenerTodosLosUsuarios();
 
-        if (!empty($usuariosConRoleVacio)) 
+        if (!empty($usuarios)) 
         {
             echo "<table><tr><th>Nombre de Usuario</th><th>Acciones</th></tr>";
-            foreach ($usuariosConRoleVacio as $usuario) 
+            foreach ($usuarios as $usuario) 
             {
                 echo "<tr><td>".$usuario['nombre']."</td><td>";
                 echo "<form method='post' action='Admin.php'>";
@@ -31,7 +31,7 @@ class FuncionesAdmin
         } 
         else 
         {
-            echo "No hay usuarios con role vacío.";
+            echo "No hay usuarios";
         }
 
         // Verificar si se ha enviado un formulario
