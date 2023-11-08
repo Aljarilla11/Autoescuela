@@ -1,64 +1,140 @@
-<?php
-
-require_once '../repository/Db.php';
-require_once '../repository/UsuarioRepository.php';
-
-class FuncionesAdmin
-{
-    public static function adminFunctionality()
-    {
-        $conexion = Db::conectar();
-        $usuarioRepo = new UsuarioRepository($conexion);
-
-        // Obtener usuarios con role vacío
-        $usuarios = $usuarioRepo->obtenerTodosLosUsuarios();
-
-        if (!empty($usuarios)) 
-        {
-            echo "<table><tr><th>Nombre de Usuario</th><th>Acciones</th></tr>";
-            foreach ($usuarios as $usuario) 
-            {
-                echo "<tr><td>".$usuario['nombre']."</td><td>";
-                echo "<form method='post' action='Admin.php'>";
-                echo "<input type='hidden' name='usuario_id' value='".$usuario['id']."'>";
-                echo "<input type='text' name='nuevo_role' placeholder='Nuevo Role'>";
-                echo "<input type='submit' name='asignar_role' value='Asignar Role'>";
-                echo "<input type='submit' name='eliminar_usuario' value='Eliminar Usuario'>";
-                echo "</form>";
-                echo "</td></tr>";
-            }
-            echo "</table>";
-        } 
-        else 
-        {
-            echo "No hay usuarios";
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Menu</title>
+    <style>
+        .menu {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
         }
 
-        // Verificar si se ha enviado un formulario
-        if ($_SERVER["REQUEST_METHOD"] == "POST") 
-        {
-            if (isset($_POST['asignar_role'])) 
-            {
-                // Lógica para actualizar el role del usuario
-                $usuarioId = $_POST['usuario_id'];
-                $nuevoRole = $_POST['nuevo_role'];
-                $usuarioRepo->actualizarRoleUsuario($usuarioId, $nuevoRole);
-                header('Location: Admin.php');
-                exit;
-            } 
-            elseif (isset($_POST['eliminar_usuario'])) 
-            {
-                // Lógica para eliminar al usuario
-                $usuarioId = $_POST['usuario_id'];
-                $usuarioRepo->eliminarUsuario($usuarioId);
-                header('Location: Admin.php');
-                exit;
-            }
+        .submenu {
+            float: left;
         }
-    }
-}
 
-// Llamar a la función de administración
-FuncionesAdmin::adminFunctionality();
+        .submenu a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
 
-?>
+        .submenu a:hover {
+            background-color: #111;
+        }
+
+        .submenu .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            min-width: 160px;
+            z-index: 1;
+        }
+
+        .submenu:hover .dropdown-content {
+            display: block;
+        }
+
+        .submenu .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .submenu .dropdown-content a:hover {
+            background-color: #111;
+        }
+
+        .profesor-dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            min-width: 160px;
+            z-index: 1;
+            margin-top: 50px;
+        }
+
+        .profesor:hover .profesor-dropdown-content {
+            display: block;
+        }
+
+        .profesor-dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .profesor-dropdown-content a:hover {
+            background-color: #111;
+        }
+
+        .crear-dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            min-width: 160px;
+            z-index: 1;
+            margin-top: 50px;
+        }
+
+        .crear:hover .crear-dropdown-content {
+            display: block;
+        }
+
+        .crear-dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .crear-dropdown-content a:hover {
+            background-color: #111;
+        }
+    </style>
+</head>
+<body>
+
+<ul class="menu">
+    <li class="submenu">
+        <a href="#administrar">Administrar Usuarios</a>
+    </li>
+    <li class="submenu">
+        <a href="#hacerexamen">Hacer Examen</a>
+        <div class="dropdown-content">
+            <a href="#automatico">Automatico</a>
+            <div class="profesor">
+                <a href="#profesor">Profesor</a>
+                <div class="dropdown-content">
+            
+
+                 </div>
+            </div>
+        </div>
+    </li>
+    <li class="submenu">
+        <a href="#crearpreguntas">Crear Preguntas</a>
+    </li>
+    <li class="submenu">
+        <a href="#verresultado">Ver Resultado</a>
+    </li>
+    <li class="submenu">
+        <a href="#crearexamen">Crear Examen</a>
+        <div class="dropdown-content">
+            <a href="#manualmente">Manualmente</a>
+            <a href="#aleatorio">Aleatorio</a>
+        </div>
+    </li>
+</ul>
+
+</body>
+</html>

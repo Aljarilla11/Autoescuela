@@ -11,6 +11,15 @@ class UsuarioRepository
         $this->conexion = $conexion;
     }
 
+    public function obtenerUsuarioPorId($usuarioId)
+    {
+        $sql = "SELECT * FROM usuario WHERE id = :usuario_id";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindParam(':usuario_id', $usuarioId);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function obtenerUsuariosConRoleVacio()
     {
         $sql = "SELECT * FROM usuario WHERE role = ''";
