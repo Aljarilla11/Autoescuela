@@ -1,6 +1,6 @@
 <?php
 
-require_once '../repository/Db.php';
+//require_once '../repository/Db.php';
 
 class DificultadRepository
 {

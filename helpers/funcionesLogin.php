@@ -1,7 +1,7 @@
 <?php
 
-require_once "../helpers/Sesion.php";
-require_once "../repository/Db.php";
+//require_once "../helpers/Sesion.php";
+//require_once "../repository/Db.php";
 
 class FuncionesLogin
 {
@@ -26,19 +26,19 @@ class FuncionesLogin
                 if ($role === 'admin') 
                 {
                     Sesion::guardarSesion('usuario', $_SESSION['usuario'] = $nombre);
-                    header('Location: http://autoescuela.com/forms/Admin.php');
+                    header('Location: ?menu=admin');
                     exit;
                 } 
                 elseif ($role === 'alumno') 
                 {
                     Sesion::guardarSesion('usuario', $_SESSION['usuario'] = $nombre);
-                    header('Location: http://autoescuela.com/forms/Alumno.php');
+                    header('Location: ?menu=alumno');
                     exit;
                 } 
                 elseif ($role === 'profesor') 
                 {
                     Sesion::guardarSesion('usuario', $_SESSION['usuario'] = $nombre);
-                    header('Location: http://autoescuela.com/forms/Profesor.php');
+                    header('Location: ?menu=profesor');
                     exit;
                 } 
                 else 
@@ -105,7 +105,6 @@ class FuncionesLogin
         } 
         else 
         {
-            echo "Credenciales incorrectas";
             return false; // El usuario no está autenticado
         }
     }

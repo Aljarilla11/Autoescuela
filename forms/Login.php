@@ -1,13 +1,10 @@
 <?php
 
-require_once "../helpers/FuncionesLogin.php";
-require_once "../helpers/Sesion.php";
-
 class Login
 {
     public static function loginUser()
     {
-        Sesion::iniciaSesion();
+        //Sesion::iniciaSesion();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') 
         {
@@ -29,7 +26,7 @@ Login::loginUser();
 </head>
 <body>
     <h1>Iniciar Sesión</h1>
-    <form action="Login.php" method="POST">
+    <form action="" method="POST">
         <label for="nombre_usuario">Nombre de Usuario:</label>
         <input type="text" id="nombre" name="nombre" required><br><br>
         
@@ -38,6 +35,6 @@ Login::loginUser();
         
         <input type="submit" name="enviar" value="Iniciar Sesión">
     </form>
-    <p>¿No tienes una cuenta? <a href="http://autoescuela.com/forms/Register.php">Regístrate</a></p>
+    <p>¿No tienes una cuenta? <a href="?menu=registro">Regístrate</a></p>
 </body>
 </html>

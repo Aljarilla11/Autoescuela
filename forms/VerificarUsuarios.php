@@ -1,7 +1,7 @@
 <?php
 
-require_once '../repository/Db.php';
-require_once '../repository/UsuarioRepository.php';
+//require_once '../repository/Db.php';
+//require_once '../repository/UsuarioRepository.php';
 
 class FuncionesAdmin
 {

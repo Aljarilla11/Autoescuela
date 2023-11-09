@@ -1,13 +1,10 @@
 <?php
 
-require_once "../helpers/FuncionesLogin.php";
-require_once "../helpers/Sesion.php";
-
 class Register
 {
     public static function registerUser()
     {
-        Sesion::iniciaSesion();
+        //Sesion::iniciaSesion();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') 
         {
@@ -30,7 +27,7 @@ Register::registerUser();
 </head>
 <body>
     <h1>Registro de Usuario</h1>
-    <form action="Register.php" method="POST">
+    <form action="" method="POST">
         <label for="nombre">Nombre de Usuario:</label>
         <input type="text" id="nombre" name="nombre" required><br><br>
         
