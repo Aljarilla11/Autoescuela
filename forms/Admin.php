@@ -8,7 +8,7 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background-color: #333;
+            background-color: blue; /* Cambiado a azul */
         }
 
         .submenu {
@@ -23,14 +23,10 @@
             text-decoration: none;
         }
 
-        .submenu a:hover {
-            background-color: #111;
-        }
-
         .submenu .dropdown-content {
             display: none;
             position: absolute;
-            background-color: #333;
+            background-color: blue; /* Cambiado a azul */
             min-width: 160px;
             z-index: 1;
         }
@@ -47,24 +43,27 @@
             text-align: left;
         }
 
-        .submenu .dropdown-content a:hover {
-            background-color: #111;
-        }
-
-        .profesor-dropdown-content {
+        .profesor-dropdown-content,
+        .aleatorio-dropdown-content,
+        .automatico-dropdown-content {
             display: none;
             position: absolute;
-            background-color: #333;
+            background-color: blue; /* Cambiado a azul */
             min-width: 160px;
             z-index: 1;
-            margin-top: 50px;
+            margin-top: 0;
+            margin-left: 100%;
         }
 
-        .profesor:hover .profesor-dropdown-content {
+        .profesor:hover .profesor-dropdown-content,
+        .aleatorio:hover .aleatorio-dropdown-content,
+        .automatico:hover .automatico-dropdown-content {
             display: block;
         }
 
-        .profesor-dropdown-content a {
+        .profesor-dropdown-content a,
+        .aleatorio-dropdown-content a,
+        .automatico-dropdown-content a {
             color: white;
             padding: 12px 16px;
             text-decoration: none;
@@ -72,33 +71,9 @@
             text-align: left;
         }
 
-        .profesor-dropdown-content a:hover {
-            background-color: #111;
-        }
-
-        .crear-dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #333;
-            min-width: 160px;
-            z-index: 1;
-            margin-top: 50px;
-        }
-
-        .crear:hover .crear-dropdown-content {
-            display: block;
-        }
-
-        .crear-dropdown-content a {
-            color: white;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            text-align: left;
-        }
-
-        .crear-dropdown-content a:hover {
-            background-color: #111;
+        .profesor-dropdown-content .submenu,
+        .automatico-dropdown-content .submenu {
+            float: none;
         }
     </style>
 </head>
@@ -111,13 +86,21 @@
     <li class="submenu">
         <a href="#hacerexamen">Hacer Examen</a>
         <div class="dropdown-content">
-            <a href="#automatico">Automatico</a>
             <div class="profesor">
                 <a href="#profesor">Profesor</a>
-                <div class="dropdown-content">
-            
-
-                 </div>
+                <div class="profesor-dropdown-content">
+                    <a href="#facil">Facil</a>
+                    <a href="#medio">Medio</a>
+                    <a href="#dificil">Dificil</a>
+                </div>
+            </div>
+            <div class="automatico">
+                <a href="#automatico">Automatico</a>
+                <div class="automatico-dropdown-content">
+                    <a href="#facil">Facil</a>
+                    <a href="#medio">Medio</a>
+                    <a href="#dificil">Dificil</a>
+                </div>
             </div>
         </div>
     </li>
@@ -131,7 +114,14 @@
         <a href="#crearexamen">Crear Examen</a>
         <div class="dropdown-content">
             <a href="#manualmente">Manualmente</a>
-            <a href="#aleatorio">Aleatorio</a>
+            <div class="aleatorio">
+                <a href="#aleatorio">Aleatorio</a>
+                <div class="aleatorio-dropdown-content">
+                    <a href="#facil">Facil</a>
+                    <a href="#medio">Medio</a>
+                    <a href="#dificil">Dificil</a>
+                </div>
+            </div>
         </div>
     </li>
 </ul>
