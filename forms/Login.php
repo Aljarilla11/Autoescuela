@@ -23,8 +23,9 @@ Login::loginUser();
 <html lang="en">
 <head>
     <title>Formulario de Inicio de Sesión</title>
+    <link rel="stylesheet" href="../estilos/estiloLogin.css">
 </head>
-<body>
+<body id="bodyLogin">
     <h1>Iniciar Sesión</h1>
     <form action="" method="POST">
         <label for="nombre_usuario">Nombre de Usuario:</label>

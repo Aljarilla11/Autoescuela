@@ -14,7 +14,7 @@ class FuncionesLogin
 
     public static function login($nombre, $password)
     {
-        Sesion::iniciaSesion();
+        //Sesion::iniciaSesion();
 
         if (isset($_POST['enviar'])) 
         {
@@ -55,7 +55,7 @@ class FuncionesLogin
 
     public static function existeUsuario($nombre, $password)
     {
-        Sesion::iniciaSesion();
+        //Sesion::iniciaSesion();
         self::iniciarConexion();
 
         // Utilizar sentencias preparadas para prevenir ataques de inyección de SQL
@@ -77,7 +77,7 @@ class FuncionesLogin
 
     public static function obtenerRoleUsuario($nombre, $password)
     {
-        Sesion::iniciaSesion();
+        //Sesion::iniciaSesion();
         self::iniciarConexion();
 
         $sql = "SELECT role FROM usuario WHERE nombre = :nombre AND password = :password";

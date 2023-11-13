@@ -1,0 +1,45 @@
+form {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    color: white;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    margin: auto;
+    margin-top: 10vh;
+}
+
+h2 {
+    color: #FF6400;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #FF6400;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Transición suave del color de fondo */
+}
+
+button:hover {
+    background-color: #FF4500;
+}
+
+button:hover:active {
+    background-color: #FF4500; /* Cambiar también durante el clic para una retroalimentación visual */
+}
+
+p, h1 {
+    text-align: center;
+}

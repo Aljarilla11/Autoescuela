@@ -37,6 +37,11 @@ if (isset($_GET['menu']))
         require_once './forms/Alumno.php';
     }
 
+    if($_GET['menu'] == "hacerexamen")
+    {
+        require_once './HacerExamen/index.html';
+    }
+
    
     
 }
