@@ -24,6 +24,7 @@ Register::registerUser();
 <html lang="en">
 <head>
     <title>Formulario de Registro</title>
+    <link rel="stylesheet" href="../estilos/estiloRegistro.css">
 </head>
 <body>
     <h1>Registro de Usuario</h1>
