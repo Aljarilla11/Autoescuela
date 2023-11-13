@@ -34,7 +34,7 @@ Login::loginUser();
         <label for="contrasena">Contraseña:</label>
         <input type="password" id="password" name="password" required><br><br>
         
-        <input type="submit" name="enviar" value="Iniciar Sesión">
+        <input type="submit" id="btnIniciarSesion" name="enviar" value="Iniciar Sesión">
     </form>
     <p>¿No tienes una cuenta? <a href="?menu=registro">Regístrate</a></p>
 </body>
