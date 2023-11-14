@@ -8,8 +8,8 @@
 
 <footer class="footer">
     <div class="footer-links">
-        <a href="#direccion">Dirección</a> | 
-        <a href="#horarios">Horarios</a> | 
+        <a href="?menu=contacto">Dirección</a> | 
+        <a href="?menu=contacto">Horarios</a> | 
         <a href="#avisolegal">Aviso Legal</a> | 
         <a href="#politicacookies">Política de Cookies</a> | 
         <a href="#politicaprivacidad">Política de Privacidad</a>

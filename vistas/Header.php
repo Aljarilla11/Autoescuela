@@ -22,10 +22,10 @@ $menu_actual = isset($_GET['menu']) ? $_GET['menu'] : '';
     <ul class="menu">
         <li class="first"><a href="?menu=inicio">AUTOESCUELA ILITURGI</a></li>
         <li><a href="?menu=inicio" <?php if ($menu_actual === 'inicio') echo 'class="active"'; ?>>INICIO</a></li>
-        <li><a href="#vergaleria">VER GALERÍA</a></li>
+        <li><a href="?menu=galeria">VER GALERÍA</a></li>
         <li><a href="?menu=login">LOGIN</a></li>
         <li><a href="?menu=registro">REGISTRO</a></li>
-        <li><a href="#contacto">CONTACTO</a></li>
+        <li><a href="?menu=contacto">CONTACTO</a></li>
         <li><a href="?menu=logout">LOGOUT</a></li>
         
     <?php if ($menu_actual == 'logout') { 

@@ -49,6 +49,14 @@ if (isset($_GET['menu']))
     {
         require_once './helpers/CierraSesion.php';
     }
+    if($_GET['menu'] == "contacto")
+    {
+        require_once './forms/Contacto.php';
+    }
+    if($_GET['menu'] == "galeria")
+    {
+        require_once './forms/Galeria.php';
+    }
 
 
    
