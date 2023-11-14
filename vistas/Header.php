@@ -26,18 +26,17 @@ $menu_actual = isset($_GET['menu']) ? $_GET['menu'] : '';
         <li><a href="?menu=login">LOGIN</a></li>
         <li><a href="?menu=registro">REGISTRO</a></li>
         <li><a href="#contacto">CONTACTO</a></li>
-        <li><a href="?menu=inicio">LOGOUT</a></li>
+        <li><a href="?menu=logout">LOGOUT</a></li>
+        
+    <?php if ($menu_actual == 'logout') { 
+        FuncionesLogin::logout();
+     } ?>
     </ul>
 </header>
 <body>
-
-   
-
     <?php if ($menu_actual == 'inicio' || $menu_actual == '') { ?>
         <!-- Imagen debajo del menú -->
         <img class="imagen" src="./imagenes/imagenfondo.jpg" alt="">
     <?php } ?>
-
-
 </body>
 </html>

@@ -112,7 +112,7 @@ class FuncionesLogin
     public static function logout()
     {
          Sesion::cerrarSesion();
-         header('Location: http://autoescuela.com/forms/Login.php');
+         header('Location: ?menu=inicio');
          exit;
     }
 

@@ -45,6 +45,11 @@ if (isset($_GET['menu']))
     {
         require_once './forms/VerificarUsuarios.php';
     }
+    if($_GET['menu'] == "logout")
+    {
+        require_once './helpers/CierraSesion.php';
+    }
+
 
    
     
