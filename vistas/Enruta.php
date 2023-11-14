@@ -41,6 +41,10 @@ if (isset($_GET['menu']))
     {
         require_once './HacerExamen/index.html';
     }
+    if($_GET['menu'] == "adminuser")
+    {
+        require_once './forms/VerificarUsuarios.php';
+    }
 
    
     

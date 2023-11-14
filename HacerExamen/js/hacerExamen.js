@@ -16,8 +16,9 @@ window.addEventListener("load", function ()
     function comenzar() 
     {
         btnComenzar.style.display = "none";
+        console.log("")
         btnFinalizar.style.display = "block";
-        fetch("plantilla/plantillaPregunta.html").then(x => x.text()).then(y => 
+        fetch("HacerExamen/plantilla/plantillaPregunta.html").then(x => x.text()).then(y => 
         {
             var contenedor = document.createElement("div");
             contenedor.innerHTML = y;
@@ -25,7 +26,7 @@ window.addEventListener("load", function ()
             var cuadrados = contenedor.querySelector(".cuadrados");
             var cuadradosAux = cuadrados.cloneNode(true);
 
-            fetch("servidor/preguntasExamen.json").then(x => x.json()).then(y => 
+            fetch("HacerExamen/servidor/preguntasExamen.json").then(x => x.json()).then(y => 
             {
                 preguntas = y.examen[0].pregunta;
                 preguntas.forEach((pregActual, index) => 

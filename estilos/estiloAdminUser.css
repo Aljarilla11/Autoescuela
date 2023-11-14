@@ -1,0 +1,62 @@
+/* estilosAdminMinimalista.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #333;
+    color: white;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+table, th, td {
+    border: 1px solid #FF6400; /* Naranja */
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+/* Estilo para el cuadro de lista */
+select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 8px;
+    box-sizing: border-box;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 8px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: #FF6400; /* Naranja */
+    color: white;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 8px;
+}
+
+input[type="submit"]:hover {
+    background-color: #FF4500; /* Naranja oscuro al pasar el mouse */
+}

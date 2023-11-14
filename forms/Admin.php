@@ -8,7 +8,7 @@
 
 <ul class="menu">
     <li class="submenu">
-        <a href="#administrar">Administrar Usuarios</a>
+        <a href="?menu=adminuser">Administrar Usuarios</a>
     </li>
     <li class="submenu">
         <a href="#hacerexamen">Hacer Examen</a>

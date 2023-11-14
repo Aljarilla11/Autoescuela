@@ -17,7 +17,6 @@ $menu_actual = isset($_GET['menu']) ? $_GET['menu'] : '';
    
 </head>
 
-<?php if (!$usuario_iniciado) { ?>
 
 <header>
     <ul class="menu">
@@ -27,6 +26,7 @@ $menu_actual = isset($_GET['menu']) ? $_GET['menu'] : '';
         <li><a href="?menu=login">LOGIN</a></li>
         <li><a href="?menu=registro">REGISTRO</a></li>
         <li><a href="#contacto">CONTACTO</a></li>
+        <li><a href="?menu=inicio">LOGOUT</a></li>
     </ul>
 </header>
 <body>
@@ -37,8 +37,6 @@ $menu_actual = isset($_GET['menu']) ? $_GET['menu'] : '';
         <!-- Imagen debajo del menú -->
         <img class="imagen" src="./imagenes/imagenfondo.jpg" alt="">
     <?php } ?>
-
-<?php } ?>
 
 
 </body>

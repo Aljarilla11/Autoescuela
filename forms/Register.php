@@ -28,7 +28,7 @@ Register::registerUser();
 </head>
 <body>
     <h1>Registro de Usuario</h1>
-    <form action="" method="POST">
+    <form action="?menu=login" method="POST">
         <label for="nombre">Nombre de Usuario:</label>
         <input type="text" id="nombre" name="nombre" required><br><br>
         
