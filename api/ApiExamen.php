@@ -1,5 +1,9 @@
 <?php
 
+header("Access-Control-Allow-Origin: *");
+require_once '../repository/Db.php'; // Asegúrate de incluir tu archivo Db.php
+
+
 if ($_SERVER['REQUEST_METHOD'] == 'GET') 
 {
     if (isset($_GET['id_examen'])) 
@@ -9,9 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
         {
             $conexion = Db::conectar();
             $query = "SELECT p.id, p.enunciado, c.nombre AS categoria, d.nombre AS dificultad,
-            p.respuesta1 AS res1, p.respuesta2 AS res2, p.respuesta3 AS res3 FROM pregunta p
+            p.resp1 AS res1, p.resp2 AS res2, p.resp3 AS res3 FROM pregunta p
             INNER JOIN categoria c ON p.id_categoria = c.id INNER JOIN dificultad d ON p.id_dificultad = d.id
-            INNER JOIN examen_pregunta ep ON p.id = ep.id_pregunta WHERE ep.id_examen = :idExamen";
+            INNER JOIN preguntaexamen ep ON p.id = ep.id_pregunta WHERE ep.id_examen = :idExamen";
             $statement = $conexion->prepare($query);
             $statement->bindParam(':idExamen', $idExamen, PDO::PARAM_INT);
             $statement->execute();

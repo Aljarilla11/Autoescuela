@@ -26,9 +26,9 @@ window.addEventListener("load", function ()
             var cuadrados = contenedor.querySelector(".cuadrados");
             var cuadradosAux = cuadrados.cloneNode(true);
 
-            fetch("HacerExamen/servidor/preguntasExamen.json").then(x => x.json()).then(y => 
+            fetch("http://apiautoescuela.com/ApiExamen.php?id_examen=3").then(x => x.json()).then(y => 
             {
-                preguntas = y.examen[0].pregunta;
+                preguntas = y.preguntas;
                 preguntas.forEach((pregActual, index) => 
                 {
                     var pregAux = pregunta.cloneNode(true);
@@ -39,23 +39,23 @@ window.addEventListener("load", function ()
                     pregAux.getElementsByClassName("numero")[0].innerHTML = (index + 1) + "- ";
                     idsPreguntas.push(pregActual.id);
                     pregAux.getElementsByClassName("enunciado")[0].innerHTML = pregActual.enunciado;
-                    pregAux.getElementsByClassName("imagen")[0].setAttribute("src", pregActual.url);
-                    pregAux.getElementsByClassName("resp1")[0].innerHTML = pregActual.respuesta[0].resp1;
+                    //pregAux.getElementsByClassName("imagen")[0].setAttribute("src", pregActual.url);
+                    pregAux.getElementsByClassName("resp1")[0].innerHTML = pregActual.respuesta.res1;
                     pregAux.getElementsByClassName("res1")[0].addEventListener("click", function() 
                     {
-                        guardarRespuesta(index, pregActual.respuesta[0].resp1);
+                        guardarRespuesta(index, pregActual.respuesta.res1);
                     });
                     pregAux.getElementsByClassName("res2")[0].addEventListener("click", function() 
                     {
-                        guardarRespuesta(index, pregActual.respuesta[0].resp2);
+                        guardarRespuesta(index, pregActual.respuesta.res2);
                     });
                     pregAux.getElementsByClassName("res3")[0].addEventListener("click", function() 
                     {
-                        guardarRespuesta(index, pregActual.respuesta[0].resp3);
+                        guardarRespuesta(index, pregActual.respuesta.res3);
                     });
-                    pregAux.getElementsByClassName("resp2")[0].innerHTML = pregActual.respuesta[0].resp2;
+                    pregAux.getElementsByClassName("resp2")[0].innerHTML = pregActual.respuesta.res2;
                     
-                    pregAux.getElementsByClassName("resp3")[0].innerHTML = pregActual.respuesta[0].resp3;
+                    pregAux.getElementsByClassName("resp3")[0].innerHTML = pregActual.respuesta.res3;
             
                     pregAux.getElementsByClassName("borrar")[0].onclick = function () 
                     {

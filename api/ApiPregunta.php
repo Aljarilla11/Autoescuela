@@ -1,5 +1,7 @@
 <?php
 
+require_once '../repository/Db.php'; // Asegúrate de incluir tu archivo Db.php
+
 if ($_SERVER['REQUEST_METHOD'] == 'GET') 
 {
     try 
@@ -7,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
         
         $conexion = Db::conectar();
         $query = "SELECT p.id, p.enunciado, c.nombre AS categoria, d.nombre AS dificultad, 
-        p.respuesta1 AS res1, p.respuesta2 AS res2, p.respuesta3 AS res3 FROM pregunta p
+        p.resp1 AS res1, p.resp2 AS res2, p.resp3 AS res3 FROM pregunta p
         INNER JOIN categoria c ON p.id_categoria = c.id INNER JOIN dificultad d ON p.id_dificultad = d.id";
         $statement = $conexion->prepare($query);
         $statement->execute();
