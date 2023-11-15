@@ -57,6 +57,10 @@ if (isset($_GET['menu']))
     {
         require_once './forms/Galeria.php';
     }
+    if($_GET['menu'] == "crearPregunta")
+    {
+        require_once './forms/CrearPregunta.php';
+    }
 
 
    

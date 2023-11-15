@@ -29,7 +29,7 @@
         </div>
     </li>
     <li class="submenu">
-        <a href="#crearpreguntas">Crear Preguntas</a>
+        <a href="?menu=crearPregunta">Crear Preguntas</a>
     </li>
     <li class="submenu">
         <a href="#verresultado">Ver Resultado</a>

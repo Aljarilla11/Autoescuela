@@ -1,0 +1,56 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff; /* Negro */
+    color: white;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+h1 {
+    color: #FF6400; /* Naranja */
+    text-align: center;
+}
+
+form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #282828; /* Gris oscuro */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin-bottom: 150px; /* Ajusta según sea necesario */
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #FF6400; /* Naranja */
+}
+
+input[type="text"],
+input[type="number"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    background-color: #333; /* Negro */
+    color: white;
+    border: 1px solid #FF6400; /* Naranja */
+    border-radius: 5px;
+}
+
+button {
+    background-color: #FF6400; /* Naranja */
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: calc(100% - 20px);
+}
+
+button:hover {
+    background-color: #FF4500; /* Naranja oscuro al pasar el mouse */
+}
