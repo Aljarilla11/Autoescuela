@@ -4,8 +4,10 @@
 
 class FuncionesAdmin
 {
+   
     public static function adminFunctionality()
     {
+        Admin::imprimirMenuAdmin();
         $conexion = Db::conectar();
         $usuarioRepo = new UsuarioRepository($conexion);
 

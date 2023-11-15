@@ -126,6 +126,7 @@ window.addEventListener("load", function ()
     {
         var cuadrados = document.createElement("div");
         cuadrados.className = "cuadrados";
+        //var cuadrados = document.querySelector(".cudardados");
     
         preguntas.forEach((pregActual, index) => {
             var numeroPregunta = index + 1;
