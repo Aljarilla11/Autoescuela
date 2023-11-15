@@ -2,6 +2,9 @@
 if ($_SERVER['REQUEST_METHOD'] == 'POST' &&
     isset($_POST['enunciado'], $_POST['resp1'], $_POST['resp2'], $_POST['resp3'], $_POST['correcto'], $_POST['categoria'], $_POST['dificultad'])) {
 
+    
+    
+     Admin::imprimirMenuAdmin();
     $conexion = Db::conectar();
 
     $enunciado = $_POST['enunciado'];
