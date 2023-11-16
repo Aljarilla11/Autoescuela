@@ -8,6 +8,7 @@ class Register
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') 
         {
+            var_dump($_POST);
             $nombre = $_POST['nombre'];
             $password = $_POST['password'];
             FuncionesLogin::register($nombre, $password);
@@ -28,7 +29,7 @@ Register::registerUser();
 </head>
 <body>
     <h1>Registro de Usuario</h1>
-    <form action="?menu=login" method="POST">
+    <form action="" method="POST">
         <label for="nombre">Nombre de Usuario:</label>
         <input type="text" id="nombre" name="nombre" required><br><br>
         

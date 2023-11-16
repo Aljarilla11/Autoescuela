@@ -64,13 +64,13 @@ class FuncionesAdmin
                 $usuarioId = $_POST['usuario_id'];
                 $nuevoRole = $_POST['nuevo_role'];
                 $usuarioRepo->actualizarRoleUsuario($usuarioId, $nuevoRole);
-                header('Location: ?menu=adminuser');
+                //header('Location: ?menu=adminuser');
                 exit;
             } elseif (isset($_POST['eliminar_usuario'])) {
                 // Lógica para eliminar al usuario
                 $usuarioId = $_POST['usuario_id'];
                 $usuarioRepo->eliminarUsuario($usuarioId);
-                header('Location: ?menu=adminuser');
+                //header('Location: ?menu=adminuser');
                 exit;
             }
         }

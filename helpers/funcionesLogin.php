@@ -118,14 +118,14 @@ class FuncionesLogin
 
     public static function register($nombre, $password)
     {
-        Sesion::iniciaSesion();
+        //Sesion::iniciaSesion();
         self::iniciarConexion();
 
         if (isset($_POST['enviar'])) 
         {
             $query = "INSERT INTO usuario (nombre, password) VALUES ('$nombre', '$password')";
             self::$conexion->exec($query);
-            header('Location: http://autoescuela.com/forms/Login.php');
+            header('Location: ?menu=login');
         }
     }
 }

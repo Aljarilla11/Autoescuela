@@ -69,6 +69,10 @@ if (isset($_GET['menu']))
     {
         require_once './CrearExamen/index.html';
     }
+    if($_GET['menu'] == "recuperar")
+    {
+        require_once './forms/RecuperarContraseña.php';
+    }
 
 
 
