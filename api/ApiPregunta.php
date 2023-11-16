@@ -1,5 +1,6 @@
 <?php
 
+header("Access-Control-Allow-Origin: *");
 require_once '../repository/Db.php'; // Asegúrate de incluir tu archivo Db.php
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') 
@@ -7,12 +8,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
     try 
     {
         $conexion = Db::conectar();
+
         if (isset($_GET['categoria'], $_GET['dificultad'])) 
         {
             $categoria = $_GET['categoria'];
             $dificultad = $_GET['dificultad'];
 
-            $conexion = Db::conectar();
             $query = "SELECT enunciado FROM pregunta p
                       INNER JOIN categoria c ON p.id_categoria = c.id 
                       INNER JOIN dificultad d ON p.id_dificultad = d.id
@@ -21,12 +22,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
             $statement->bindParam(':categoria', $categoria);
             $statement->bindParam(':dificultad', $dificultad);
             $statement->execute();
-            $enunciados = $statement->fetchAll(PDO::FETCH_COLUMN);
+            $preguntas = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-            if ($enunciados) 
+            if ($preguntas) 
             {
                 header('Content-type: application/json');
-                echo json_encode(['enunciados' => $enunciados]);
+                echo json_encode(['preguntas' => $preguntas]);
             } 
             else 
             {
