@@ -46,7 +46,7 @@ class Admin
             <li class="submenu">
                 <a href="#crearexamen">Crear Examen</a>
                 <div class="dropdown-content">
-                    <a href="#manualmente">Manualmente</a>
+                    <a href="?menu=crearexamen">Manualmente</a>
                     <div class="aleatorio">
                         <a href="#aleatorio">Aleatorio</a>
                         <div class="aleatorio-dropdown-content">

@@ -6,8 +6,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
 {
     try 
     {
-        
         $conexion = Db::conectar();
+        if (isset($_GET['categoria'], $_GET['dificultad'])) 
+        {
+            $categoria = $_GET['categoria'];
+            $dificultad = $_GET['dificultad'];
+
+            $conexion = Db::conectar();
+            $query = "SELECT enunciado FROM pregunta p
+                      INNER JOIN categoria c ON p.id_categoria = c.id 
+                      INNER JOIN dificultad d ON p.id_dificultad = d.id
+                      WHERE c.nombre = :categoria AND d.nombre = :dificultad";
+            $statement = $conexion->prepare($query);
+            $statement->bindParam(':categoria', $categoria);
+            $statement->bindParam(':dificultad', $dificultad);
+            $statement->execute();
+            $enunciados = $statement->fetchAll(PDO::FETCH_COLUMN);
+
+            if ($enunciados) 
+            {
+                header('Content-type: application/json');
+                echo json_encode(['enunciados' => $enunciados]);
+            } 
+            else 
+            {
+                header('HTTP/1.0 404 Not Found');
+                echo json_encode(array('error' => 'No se encontraron preguntas'));
+            }
+        } 
+        else 
+        {
+            
         $query = "SELECT p.id, p.enunciado, c.nombre AS categoria, d.nombre AS dificultad, 
         p.resp1 AS res1, p.resp2 AS res2, p.resp3 AS res3 FROM pregunta p
         INNER JOIN categoria c ON p.id_categoria = c.id INNER JOIN dificultad d ON p.id_dificultad = d.id";
@@ -43,6 +72,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
             header('HTTP/1.0 404 Not Found');
             echo json_encode(array('error' => 'No se encontraron preguntas'));
         }
+            
+        }
+        
+       
     } 
     catch (PDOException $e) 
     {

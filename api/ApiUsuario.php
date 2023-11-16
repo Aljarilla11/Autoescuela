@@ -1,5 +1,7 @@
 <?php
 
+require_once '../repository/Db.php'; // Asegúrate de incluir tu archivo Db.php
+
 if ($_SERVER['REQUEST_METHOD']=='POST')
 {
     $datos_json = file_get_contents('php://input');
