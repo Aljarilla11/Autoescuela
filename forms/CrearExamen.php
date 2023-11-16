@@ -27,13 +27,73 @@ function obtenerPreguntas($idCategoria, $idDificultad)
     return $statement->fetchAll(PDO::FETCH_ASSOC);
 }
 
-// Procesar el formulario cuando se envía
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['categoria'], $_POST['dificultad'])) {
-    $idCategoria = $_POST['categoria'];
-    $idDificultad = $_POST['dificultad'];
+function obtenerIdPreguntaPorEnunciado($enunciado)
+{
+    $conexion = Db::conectar();
 
-    // Obtener preguntas
-    $preguntas = obtenerPreguntas($idCategoria, $idDificultad);
+    $query = "SELECT id FROM pregunta WHERE enunciado = :enunciado";
+    $statement = $conexion->prepare($query);
+    $statement->bindParam(':enunciado', $enunciado, PDO::PARAM_STR);
+    $statement->execute();
+
+    $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+    return $result ? $result['id'] : null;
+}
+
+// Variable para almacenar el ID del examen actual
+$idExamenActual = null;
+$cambiarExamen = 1;
+
+if (isset($_POST['crearExamen'])) {
+    $cambiarExamen = 2;
+    echo "Examen creado con éxito.";
+}
+
+// Procesar el formulario cuando se añade una pregunta al examen
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['categoria'], $_POST['dificultad'])) {
+        $idCategoria = $_POST['categoria'];
+        $idDificultad = $_POST['dificultad'];
+
+        // Obtener preguntas
+        $preguntas = obtenerPreguntas($idCategoria, $idDificultad);
+    } elseif (isset($_POST['enunciado_pregunta'])) {
+        $enunciadoPregunta = $_POST['enunciado_pregunta'];
+
+        // Obtener el ID de la pregunta por enunciado
+        $idPregunta = obtenerIdPreguntaPorEnunciado($enunciadoPregunta);
+
+        if ($idPregunta) {
+            // Si aún no hay un examen creado, crea uno nuevo
+            if ($idExamenActual === null && $cambiarExamen == 1) {
+                var_dump($cambiarExamen);
+                $conexion = Db::conectar();
+                $insertExamenQuery = "INSERT INTO examen (fechaHora, id_usuario) VALUES (NOW(), :idUsuario)";
+                $insertExamenStatement = $conexion->prepare($insertExamenQuery);
+                // Reemplaza 1 con el ID del usuario actual
+                $idUsuario = 1;
+                $insertExamenStatement->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
+                $insertExamenStatement->execute();
+
+                // Obtener el ID del nuevo examen insertado
+                $idExamenActual = $conexion->lastInsertId();
+            }
+
+            // Insertar la pregunta en la tabla 'preguntaexamen'
+            $insertPreguntaExamenQuery = "INSERT INTO preguntaexamen (id_examen, id_pregunta) VALUES (:idExamen, :idPregunta)";
+            $insertPreguntaExamenStatement = $conexion->prepare($insertPreguntaExamenQuery);
+            $insertPreguntaExamenStatement->bindParam(':idExamen', $idExamenActual, PDO::PARAM_INT);
+            $insertPreguntaExamenStatement->bindParam(':idPregunta', $idPregunta, PDO::PARAM_INT);
+            $insertPreguntaExamenStatement->execute();
+
+            // Redirigir o realizar cualquier otra acción después de añadir la pregunta al examen
+            header("Location: ?menu=crearexamen2");
+            exit();
+        } else {
+            echo "Error: La pregunta no fue encontrada.";
+        }
+    }
 }
 ?>
 
@@ -68,11 +128,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['categoria'], $_POST['d
 
     <?php if (isset($preguntas)): ?>
         <h2>Preguntas encontradas:</h2>
-        <ul>
-            <?php foreach ($preguntas as $pregunta): ?>
-                <li><?php echo $pregunta['enunciado']; ?></li>
-            <?php endforeach; ?>
-        </ul>
+        <form action="" method="post">
+            <input type="hidden" name="crearExamen3" value="1">
+            <ul>
+                <?php foreach ($preguntas as $pregunta): ?>
+                    <li>
+                        <?php echo $pregunta['enunciado']; ?>
+                        <input type="hidden" name="enunciado_pregunta" value="<?php echo $pregunta['enunciado']; ?>">
+                        <button type="submit" name="addQuestion">Añadir al Examen</button>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </form>
+        <!-- Botón para crear el examen -->
+     
     <?php endif; ?>
+    <form action="" method="post">
+            <input type="hidden" name="crearExamen">
+            <button type="submit">Crear Examen</button>
+        </form>
 </body>
 </html>

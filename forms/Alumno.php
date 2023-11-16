@@ -8,22 +8,22 @@
 
 <ul class="menu">
     <li class="submenu">
-        <a href="#hacerexamen">Hacer Examen</a>
+        <a href="?menu=hacerexamen">Hacer Examen</a>
         <div class="dropdown-content">
             <div class="profesor">
                 <a href="?menu=hacerexamen">Profesor</a>
                 <div class="profesor-dropdown-content">
-                    <a href="#facil">Facil</a>
-                    <a href="#medio">Medio</a>
-                    <a href="#dificil">Dificil</a>
+                    <a href="?menu=hacerexamen">Facil</a>
+                    <a href="?menu=hacerexamen">Medio</a>
+                    <a href="?menu=hacerexamen">Dificil</a>
                 </div>
             </div>
             <div class="automatico">
                 <a href="?menu=hacerexamen">Automatico</a>
                 <div class="automatico-dropdown-content">
-                    <a href="#facil">Facil</a>
-                    <a href="#medio">Medio</a>
-                    <a href="#dificil">Dificil</a>
+                    <a href="?menu=hacerexamen">Facil</a>
+                    <a href="?menu=hacerexamen">Medio</a>
+                    <a href="?menu=hacerexamen">Dificil</a>
                 </div>
             </div>
         </div>

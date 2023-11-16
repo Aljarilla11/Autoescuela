@@ -17,22 +17,22 @@ class Admin
                 <a href="?menu=adminuser">Administrar Usuarios</a>
             </li>
             <li class="submenu">
-                <a href="#hacerexamen">Hacer Examen</a>
+                <a href="?menu=hacerexamen">Hacer Examen</a>
                 <div class="dropdown-content">
                     <div class="profesor">
                         <a href="?menu=hacerexamen">Profesor</a>
                         <div class="profesor-dropdown-content">
-                            <a href="#facil">Facil</a>
-                            <a href="#medio">Medio</a>
-                            <a href="#dificil">Dificil</a>
+                            <a href="?menu=hacerexamen">Facil</a>
+                            <a href="?menu=hacerexamen">Medio</a>
+                            <a href="?menu=hacerexamen">Dificil</a>
                         </div>
                     </div>
                     <div class="automatico">
                         <a href="?menu=hacerexamen">Automatico</a>
                         <div class="automatico-dropdown-content">
-                            <a href="#facil">Facil</a>
-                            <a href="#medio">Medio</a>
-                            <a href="#dificil">Dificil</a>
+                            <a href="?menu=hacerexamen">Facil</a>
+                            <a href="?menu=hacerexamen">Medio</a>
+                            <a href="?menu=hacerexamen">Dificil</a>
                         </div>
                     </div>
                 </div>
@@ -44,15 +44,15 @@ class Admin
                 <a href="#verresultado">Ver Resultado</a>
             </li>
             <li class="submenu">
-                <a href="#crearexamen">Crear Examen</a>
+                <a href="?menu=crearexamen2">Crear Examen</a>
                 <div class="dropdown-content">
-                    <a href="?menu=crearexamen">Manualmente</a>
+                    <a href="?menu=crearexamen2">Manualmente</a>
                     <div class="aleatorio">
                         <a href="?menu=crearexamen2">Aleatorio</a>
                         <div class="aleatorio-dropdown-content">
-                            <a href="#facil">Facil</a>
-                            <a href="#medio">Medio</a>
-                            <a href="#dificil">Dificil</a>
+                            <a href="?menu=crearexamen2">Facil</a>
+                            <a href="?menu=crearexamen2">Medio</a>
+                            <a href="?menu=crearexamen2">Dificil</a>
                         </div>
                     </div>
                 </div>

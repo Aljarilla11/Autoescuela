@@ -1,0 +1,54 @@
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: #ff8c00; /* Naranja */
+}
+
+form {
+    margin: 20px 0;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+select,
+button {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff8c00; /* Naranja */
+    color: #000;
+    cursor: pointer;
+}
+
+button {
+    font-weight: bold;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 15px;
+}
+
+button[name="addQuestion"],
+button[name="crearExamen"] {
+    background-color: #ff8c00; /* Naranja */
+    color: #000;
+}
+
+button[name="addQuestion"]:hover,
+button[name="crearExamen"]:hover {
+    background-color: #fff;
+    color: #ff8c00; /* Naranja */
+}

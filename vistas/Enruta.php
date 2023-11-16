@@ -61,10 +61,6 @@ if (isset($_GET['menu']))
     {
         require_once './forms/CrearPregunta.php';
     }
-    if($_GET['menu'] == "crearexamen2");
-    {
-        require_once './forms/CrearExamen.php';
-    }
     if($_GET['menu'] == "crearexamen")
     {
         require_once './CrearExamen/index.html';
@@ -73,9 +69,8 @@ if (isset($_GET['menu']))
     {
         require_once './forms/RecuperarContraseña.php';
     }
-
-
-
-   
-    
+    if($_GET['menu'] == "crearexamen2")
+    {
+        require_once './forms/CrearExamen.php';
+    }
 }
