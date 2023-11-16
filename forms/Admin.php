@@ -48,7 +48,7 @@ class Admin
                 <div class="dropdown-content">
                     <a href="?menu=crearexamen">Manualmente</a>
                     <div class="aleatorio">
-                        <a href="#aleatorio">Aleatorio</a>
+                        <a href="?menu=crearexamen2">Aleatorio</a>
                         <div class="aleatorio-dropdown-content">
                             <a href="#facil">Facil</a>
                             <a href="#medio">Medio</a>
