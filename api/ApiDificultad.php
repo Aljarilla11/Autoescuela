@@ -1,6 +1,6 @@
 <?php
 
-require_once '../repository/Db.php'; // Asegúrate de incluir tu archivo Db.php
+require_once '../repository/Db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     try {
@@ -22,7 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         echo json_encode(array('error' => 'Error en la base de datos: ' . $e->getMessage()));
     }
 } elseif ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
-    // Procesar solicitud DELETE
     parse_str(file_get_contents('php://input'), $_DELETE);
     $idDificultad = $_DELETE['id'] ?? null;
 

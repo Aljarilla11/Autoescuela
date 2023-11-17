@@ -1,6 +1,6 @@
 <?php
 
-require_once '../repository/Db.php'; // Asegúrate de incluir tu archivo Db.php
+require_once '../repository/Db.php';
 
 if ($_SERVER['REQUEST_METHOD']=='POST')
 {
@@ -96,7 +96,6 @@ elseif ($_SERVER['REQUEST_METHOD']=='DELETE')
          } 
          catch (PDOException $e) 
          {
-             // Manejar errores de la base de datos según tus necesidades
              header('HTTP/1.1 500 Internal Server Error');
              echo json_encode(array('error' => 'Error en la base de datos: ' . $e->getMessage()));
          }

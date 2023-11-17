@@ -1,5 +1,8 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+require_once '../repository/Db.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') 
+{
     header('Access-Control-Allow-Origin: http://autoescuela.com');
     header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
     header('Access-Control-Allow-Headers: Content-Type');
@@ -7,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
     exit;
 }
-require_once '../repository/Db.php'; // Asegúrate de incluir tu archivo Db.php
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
 {
@@ -38,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             exit;
         }
 
-        // Inserta el nuevo examen en la tabla 'examen'
+        // Inserta el nuevo examen en la tabla examen
         $insertExamenQuery = "INSERT INTO examen (fecha, id_usuario) VALUES (:fecha, :idUsuario)";
         $insertExamenStatement = $conexion->prepare($insertExamenQuery);
         $insertExamenStatement->bindParam(':fecha', $fecha);

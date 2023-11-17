@@ -42,7 +42,7 @@ window.addEventListener("load", function () {
     function agregarPreguntaAlExamen(enunciado) {
         // Datos para enviar en la solicitud POST
         var data = {
-            idUsuario: 1, // Reemplaza con el ID del usuario actual
+            idUsuario: 1,
             fecha: obtenerFechaActual(),
             enunciado: enunciado
         };
@@ -54,8 +54,8 @@ window.addEventListener("load", function () {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data),
-            mode: 'cors', // Asegúrate de especificar el modo CORS
-            credentials: 'include', // Agrega esto si estás utilizando credenciales
+            mode: 'cors', 
+            credentials: 'include',
         };
     
         // Realizar la solicitud POST al servidor

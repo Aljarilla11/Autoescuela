@@ -1,7 +1,7 @@
 <?ph
 
 header("Access-Control-Allow-Origin: *");
-require_once '../repository/Db.php'; // Asegúrate de incluir tu archivo Db.php
+require_once '../repository/Db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     try {
@@ -23,10 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         echo json_encode(['error' => 'Error en la base de datos: ' . $e->getMessage()]);
     }
 } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Recuperar datos del cuerpo de la solicitud
     $data = json_decode(file_get_contents('php://input'), true);
 
-    // Validar y procesar los datos recibidos
     if (isset($data['id_pregunta'], $data['id_examen'])) {
         try {
             $conexion = Db::conectar();
@@ -51,10 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         echo json_encode(['error' => 'Datos incompletos o incorrectos']);
     }
 } elseif ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
-    // Recuperar datos del cuerpo de la solicitud
     $data = json_decode(file_get_contents('php://input'), true);
-
-    // Validar y procesar los datos recibidos
     if (isset($data['id'])) {
         try {
             $conexion = Db::conectar();

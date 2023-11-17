@@ -1,6 +1,6 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #ffffff; /* Negro */
+    background-color: #ffffff; 
     color: white;
     margin: 0;
     padding: 0;
@@ -8,7 +8,7 @@ body {
 }
 
 h1 {
-    color: #FF6400; /* Naranja */
+    color: #FF6400; 
     text-align: center;
 }
 
@@ -16,16 +16,16 @@ form {
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #282828; /* Gris oscuro */
+    background-color: #282828; 
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    margin-bottom: 150px; /* Ajusta según sea necesario */
+    margin-bottom: 150px; 
 }
 
 label {
     display: block;
     margin-bottom: 8px;
-    color: #FF6400; /* Naranja */
+    color: #FF6400; 
 }
 
 input[type="text"],
@@ -34,14 +34,14 @@ input[type="number"] {
     padding: 10px;
     margin-bottom: 16px;
     box-sizing: border-box;
-    background-color: #333; /* Negro */
+    background-color: #333; 
     color: white;
-    border: 1px solid #FF6400; /* Naranja */
+    border: 1px solid #FF6400;
     border-radius: 5px;
 }
 
 button {
-    background-color: #FF6400; /* Naranja */
+    background-color: #FF6400;
     color: white;
     padding: 12px;
     border: none;
@@ -52,5 +52,5 @@ button {
 }
 
 button:hover {
-    background-color: #FF4500; /* Naranja oscuro al pasar el mouse */
+    background-color: #FF4500; 
 }

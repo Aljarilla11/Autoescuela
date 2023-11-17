@@ -1,11 +1,11 @@
 body {
-    background-color: #000;
+    background-color: #282828;
     color: #fff;
     font-family: Arial, sans-serif;
 }
 
 h1 {
-    color: #ff8c00; /* Naranja */
+    color: #FF6400 
 }
 
 form {
@@ -23,7 +23,7 @@ button {
     margin-bottom: 10px;
     border: none;
     border-radius: 5px;
-    background-color: #ff8c00; /* Naranja */
+    background-color: #FF6400; 
     color: #000;
     cursor: pointer;
 }
@@ -43,12 +43,12 @@ li {
 
 button[name="addQuestion"],
 button[name="crearExamen"] {
-    background-color: #ff8c00; /* Naranja */
+    background-color: #FF6400;
     color: #000;
 }
 
 button[name="addQuestion"]:hover,
 button[name="crearExamen"]:hover {
     background-color: #fff;
-    color: #ff8c00; /* Naranja */
+    color: #FF6400; 
 }

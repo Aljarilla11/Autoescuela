@@ -1,17 +1,17 @@
 section {
-    background-color: #282828; /* Gris oscuro */
-    color: #FF6400; /* Naranja */
+    background-color: #282828;
+    color: #FF6400; 
     padding: 20px;
     border-radius: 10px;
     text-align: center;
     width: 80%;
     max-width: 600px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    margin: 0 auto; /* Esto centrará la sección horizontalmente */
+    margin: 0 auto; 
 }
 
 h2 {
-    border-bottom: 2px solid #FF6400; /* Naranja */
+    border-bottom: 2px solid #FF6400;
     padding-bottom: 5px;
     margin-bottom: 10px;
 }

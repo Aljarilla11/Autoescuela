@@ -1,7 +1,7 @@
 <?php
 
 header("Access-Control-Allow-Origin: *");
-require_once '../repository/Db.php'; // Asegúrate de incluir tu archivo Db.php
+require_once '../repository/Db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') 
 {

@@ -21,20 +21,19 @@ body {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    transition: background-color 0.3s; /* Transición suave del color de fondo */
+    transition: background-color 0.3s; 
 }
 
 .menu li a:hover {
-    background-color: #FF6400; /* Naranja */
+    background-color: #FF6400;
 }
 
 .menu li.first {
-    background-color: #FF6400; /* Naranja */
+    background-color: #FF6400; 
 }
 
-/* Estilos para la imagen */
 .imagen {
     width: 100%;
     height: auto;
-    margin-top: 0; /* Sin separación entre el menú y la imagen */
+    margin-top: 0;
 }

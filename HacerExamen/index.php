@@ -1,6 +1,5 @@
 <?php
 
-// Aquí deberías tener la lógica para obtener el rol del usuario
 //$rolUsuario = FuncionesLogin::obtenerRolUsuarioPorNombre($_SESSION['usuario']); // Reemplaza "nombre_de_usuario" con el nombre real
 
 try {

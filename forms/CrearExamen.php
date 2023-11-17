@@ -1,7 +1,6 @@
 <?php
 
-// Aquí deberías tener la lógica para obtener el rol del usuario
-//$rolUsuario = FuncionesLogin::obtenerRolUsuarioPorNombre($_SESSION['usuario']); // Reemplaza "nombre_de_usuario" con el nombre real
+//$rolUsuario = FuncionesLogin::obtenerRolUsuarioPorNombre($_SESSION['usuario']);
 
 try {
     // Consulta preparada para obtener el rol del usuario por su nombre
@@ -24,7 +23,6 @@ try {
     // Manejar errores de conexión o consultas
     $rolUsuario = 'sinRol';
 }
-
 
 
 // Lógica para determinar qué mostrar según el rol
