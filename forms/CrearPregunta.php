@@ -3,7 +3,8 @@
 // Aquí deberías tener la lógica para obtener el rol del usuario
 //$rolUsuario = FuncionesLogin::obtenerRolUsuarioPorNombre($_SESSION['usuario']); // Reemplaza "nombre_de_usuario" con el nombre real
 
-try {
+try 
+{
     // Consulta preparada para obtener el rol del usuario por su nombre
     $conexion = Db::conectar();
     $query = "SELECT role FROM usuario WHERE nombre = :nombreUsuario";
@@ -15,12 +16,17 @@ try {
     // Obtener el resultado de la consulta
     $resultado = $statement->fetch(PDO::FETCH_ASSOC);
 
-    if ($resultado) {
+    if ($resultado) 
+    {
         $rolUsuario = $resultado['role'];
-    } else {
+    } 
+    else
+    {
         $rolUsuario = 'sinRol'; // Establece un valor predeterminado si el usuario no tiene un rol
     }
-} catch (PDOException $e) {
+} 
+catch (PDOException $e) 
+{
     // Manejar errores de conexión o consultas
     $rolUsuario = 'sinRol';
 }
@@ -39,7 +45,8 @@ elseif ($rolUsuario == 'profesor')
 elseif ($rolUsuario == 'alumno') 
 {
     ImprimirMenus::imprimirMenuAlumno();
-} else 
+} 
+else 
 {
     echo $rolUsuario;
     echo $_SESSION['usuario'];
@@ -48,7 +55,8 @@ elseif ($rolUsuario == 'alumno')
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' &&
-    isset($_POST['enunciado'], $_POST['resp1'], $_POST['resp2'], $_POST['resp3'], $_POST['correcto'], $_POST['categoria'], $_POST['dificultad'])) {
+    isset($_POST['enunciado'], $_POST['resp1'], $_POST['resp2'], $_POST['resp3'], $_POST['correcto'], $_POST['categoria'], $_POST['dificultad'])) 
+    {
 
     $conexion = Db::conectar();
 
@@ -92,9 +100,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' &&
     $statement->bindParam(':idDificultad', $idDificultad, PDO::PARAM_INT);
     $statement->bindParam(':idCategoria', $idCategoria, PDO::PARAM_INT);
 
-    if ($statement->execute()) {
+    if ($statement->execute()) 
+    {
         echo "Pregunta guardada exitosamente.";
-    } else {
+    } 
+    else 
+    {
         echo "Error al guardar la pregunta: " . $statement->errorInfo()[2];
     }
 

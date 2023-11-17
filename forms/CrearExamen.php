@@ -47,6 +47,7 @@ elseif ($rolUsuario == 'alumno')
 }
 // Obtener categorías
 $conexion = Db::conectar();
+
 $queryCategorias = "SELECT id, nombre FROM categoria";
 $statementCategorias = $conexion->prepare($queryCategorias);
 $statementCategorias->execute();
@@ -58,7 +59,7 @@ $statementDificultades = $conexion->prepare($queryDificultades);
 $statementDificultades->execute();
 $dificultades = $statementDificultades->fetchAll(PDO::FETCH_ASSOC);
 
-// Función para obtener preguntas según los criterios seleccionados
+// Funciones para obtener preguntas
 function obtenerPreguntas($idCategoria, $idDificultad)
 {
     $conexion = Db::conectar();
@@ -96,22 +97,25 @@ if (isset($_POST['crearExamen'])) {
 }
 
 // Procesar el formulario cuando se añade una pregunta al examen
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_POST['categoria'], $_POST['dificultad'])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+{
+    if (isset($_POST['categoria'], $_POST['dificultad'])) 
+    {
         $idCategoria = $_POST['categoria'];
         $idDificultad = $_POST['dificultad'];
-
-        // Obtener preguntas
         $preguntas = obtenerPreguntas($idCategoria, $idDificultad);
-    } elseif (isset($_POST['enunciado_pregunta'])) {
+    } 
+    elseif (isset($_POST['enunciado_pregunta'])) 
+    {
         $enunciadoPregunta = $_POST['enunciado_pregunta'];
 
         // Obtener el ID de la pregunta por enunciado
         $idPregunta = obtenerIdPreguntaPorEnunciado($enunciadoPregunta);
 
-        if ($idPregunta) {
+        if ($idPregunta) 
+        {
             // Si aún no hay un examen creado, crea uno nuevo
-            if ($idExamenActual === null && $cambiarExamen == 1) {
+            if ($idExamenActual === null || $cambiarExamen == 1) {
                 var_dump($cambiarExamen);
                 $conexion = Db::conectar();
                 $insertExamenQuery = "INSERT INTO examen (fechaHora, id_usuario) VALUES (NOW(), :idUsuario)";
@@ -135,11 +139,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Redirigir o realizar cualquier otra acción después de añadir la pregunta al examen
             header("Location: ?menu=crearexamen2");
             exit();
-        } else {
+        }
+        else {
             echo "Error: La pregunta no fue encontrada.";
         }
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -153,6 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <h1>Crear Examen</h1>
 
+    <!-- Formulario para seleccionar categoría y dificultad -->
     <form action="" method="post">
         <label for="categoria">Categoría:</label>
         <select name="categoria" required>
@@ -171,6 +178,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <button type="submit">Buscar Preguntas</button>
     </form>
 
+    <!-- Lista de preguntas encontradas -->
     <?php if (isset($preguntas)): ?>
         <h2>Preguntas encontradas:</h2>
         <form action="" method="post">
@@ -184,13 +192,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </li>
                 <?php endforeach; ?>
             </ul>
-        </form>
-        <!-- Botón para crear el examen -->
-     
+        </form>  
     <?php endif; ?>
+    
+    <!-- Formulario para crear el examen -->
     <form action="" method="post">
-            <input type="hidden" name="crearExamen">
-            <button type="submit">Crear Examen</button>
-        </form>
+        <input type="hidden" name="crearExamen">
+        <button type="submit">Crear Examen</button>
+    </form>
 </body>
 </html>
