@@ -26,7 +26,7 @@ window.addEventListener("load", function ()
             var cuadrados = contenedor.querySelector(".cuadrados");
             var cuadradosAux = cuadrados.cloneNode(true);
 
-            fetch("http://apiautoescuela.com/ApiExamen.php?id_examen=1").then(x => x.json()).then(y => 
+            fetch("http://apiautoescuela.com/ApiExamen.php?id_examen=3").then(x => x.json()).then(y => 
             {
                 preguntas = y.preguntas;
                 preguntas.forEach((pregActual, index) => 

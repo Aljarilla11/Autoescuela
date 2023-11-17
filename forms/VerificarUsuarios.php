@@ -1,12 +1,12 @@
 <?php
-// require_once '../repository/Db.php';
-// require_once '../repository/UsuarioRepository.php';
 
 class FuncionesAdmin
 {
+    
    
     public static function adminFunctionality()
     {
+        ImprimirMenus::imprimirMenuAdmin();
         $conexion = Db::conectar();
         $usuarioRepo = new UsuarioRepository($conexion);
 

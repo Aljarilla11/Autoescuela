@@ -118,16 +118,52 @@ class FuncionesLogin
 
     public static function register($nombre, $password)
     {
-        //Sesion::iniciaSesion();
+        // Sesion::iniciaSesion();
         self::iniciarConexion();
 
         if (isset($_POST['enviar'])) 
         {
-            $query = "INSERT INTO usuario (nombre, password) VALUES ('$nombre', '$password')";
-            self::$conexion->exec($query);
-            header('Location: ?menu=login');
+            // Comprobar si el nombre de usuario ya existe en la base de datos
+            $queryVerificacion = "SELECT COUNT(*) as count FROM usuario WHERE nombre = '$nombre'";
+            $result = self::$conexion->query($queryVerificacion);
+            $row = $result->fetch(PDO::FETCH_ASSOC);
+
+            if ($row['count'] > 0) 
+            {
+                echo "Nombre de usuario ya existente. Por favor, elige otro.";
+            } else {
+                // El nombre de usuario no existe, proceder con la inserción
+                $query = "INSERT INTO usuario (nombre, password) VALUES ('$nombre', '$password')";
+                self::$conexion->exec($query);
+                header('Location: ?menu=login');
+            }
         }
     }
+
+    public function obtenerRolPorNombre($nombreUsuario)
+    {
+        try {
+            // Consulta preparada para obtener el rol del usuario por su nombre
+            $conexion = Db::conectar();
+            $query = "SELECT role FROM usuario WHERE nombre = :nombreUsuario";
+            $statement = $conexion->prepare($query);
+        
+            $statement->bindParam(':nombreUsuario', $_SESSION['usuario'], PDO::PARAM_STR);
+            $statement->execute();
+        
+            // Obtener el resultado de la consulta
+            $resultado = $statement->fetch(PDO::FETCH_ASSOC);
+        
+            if ($resultado) {
+                $rolUsuario = $resultado['role'];
+            } else {
+                $rolUsuario = 'sinRol'; // Establece un valor predeterminado si el usuario no tiene un rol
+            }
+        } catch (PDOException $e) {
+            // Manejar errores de conexión o consultas
+            $rolUsuario = 'sinRol';
+        }
+     }
 }
 
 ?>

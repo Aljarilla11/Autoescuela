@@ -1,54 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Menu</title>
-    <link rel="stylesheet" href="../estilos/estiloMenuProfesor.css">
-</head>
-<body>
+<?php
+class Profesor
+{
+    public static function profesor()
+    {
+        ImprimirMenus::imprimirMenuProfesor();
+    }
+}
 
-<ul class="menu">
-    <li class="submenu">
-        <a href="?menu=hacerexamen">Hacer Examen</a>
-        <div class="dropdown-content">
-            <div class="profesor">
-                <a href="?menu=hacerexamen">Profesor</a>
-                <div class="profesor-dropdown-content">
-                    <a href="?menu=hacerexamen">Facil</a>
-                    <a href="?menu=hacerexamen">Medio</a>
-                    <a href="?menu=hacerexamen">Dificil</a>
-                </div>
-            </div>
-            <div class="automatico">
-                <a href="?menu=hacerexamen">Automatico</a>
-                <div class="automatico-dropdown-content">
-                    <a href="?menu=hacerexamen">Facil</a>
-                    <a href="?menu=hacerexamen">Medio</a>
-                    <a href="?menu=hacerexamen">Dificil</a>
-                </div>
-            </div>
-        </div>
-    </li>
-    <li class="submenu">
-        <a href="?menu=crearPregunta">Crear Preguntas</a>
-    </li>
-    <li class="submenu">
-        <a href="#verresultado">Ver Resultado</a>
-    </li>
-    <li class="submenu">
-        <a href="?menu=crearexamen2">Crear Examen</a>
-        <div class="dropdown-content">
-            <a href="?menu=crearexamen2">Manualmente</a>
-            <div class="aleatorio">
-                <a href="?menu=crearexamen2">Aleatorio</a>
-                <div class="aleatorio-dropdown-content">
-                    <a href="?menu=crearexamen2">Facil</a>
-                    <a href="?menu=crearexamen2">Medio</a>
-                    <a href="?menu=crearexamen2">Dificil</a>
-                </div>
-            </div>
-        </div>
-    </li>
-</ul>
+Profesor::profesor();
 
-</body>
-</html>
+?>

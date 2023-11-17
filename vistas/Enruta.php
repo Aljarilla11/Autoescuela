@@ -39,7 +39,7 @@ if (isset($_GET['menu']))
 
     if($_GET['menu'] == "hacerexamen")
     {
-        require_once './HacerExamen/index.html';
+        require_once './HacerExamen/index.php';
     }
     if($_GET['menu'] == "adminuser")
     {
